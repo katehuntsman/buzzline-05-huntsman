@@ -94,6 +94,7 @@ python-dotenv
 
 # Apache Kafka Python client (six was removed so add it separately)
 kafka-python
+PyQt6; sys_platform != "win32"
 six
 
 # Alternative: pin the older version.
