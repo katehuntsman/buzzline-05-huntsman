@@ -1,5 +1,38 @@
 # buzzline-05-case
 
+### Smart Home Sensor Data System
+
+This project simulates a smart home sensor system that produces real-time data such as temperature, humidity, and motion detection. The data is consumed, processed, and stored in a persistent database. The processed data is then displayed in a real-time Streamlit dashboard.
+
+New Consumer: Temperature Alert Processor
+
+### What Does the Consumer Do?
+The newly implemented consumer listens to a Kafka topic where it receives real-time sensor data from the producer. It specifically focuses on temperature data. Whenever the temperature exceeds a defined threshold (30°C), the consumer generates a temperature alert and stores the alert information in an SQLite database. This alert contains the timestamp of when the temperature exceeded the threshold, the temperature value, and the alert type.
+
+### What Insight is Being Calculated and Stored?
+Insight Stored: Temperature alerts.
+Calculation: The consumer checks if the incoming temperature data exceeds a threshold (30°C). If so, it creates an alert with the following information:
+Timestamp of the event
+Temperature value
+Type of alert (e.g., "Temperature Alert")
+This is an interesting insight because it allows for immediate action if the temperature in the smart home exceeds a certain limit, which can help with preventing overheating or damage to home appliances.
+
+### Why is This Insight Interesting?
+Temperature control is crucial in a smart home system to ensure comfort and prevent damage to sensitive devices or even fire hazards. By alerting on high temperatures, the system can take automated actions such as sending notifications to homeowners, turning on cooling devices, or adjusting the thermostat.
+
+### Running Codes:
+```
+source .venv/bin/activate
+python3 -m producers.kafka_producer_huntsman
+```
+
+```
+source .venv/bin/activate
+python3 -m consumers.kafka_consumer_huntsman
+streamlit run /Users/katehuntsman/Documents/Streaming\ Data/buzzline-05-huntsman/consumers/kafka_consumer_huntsman.py
+```
+
+
 Nearly every streaming analytics system stores processed data somewhere for further analysis, historical reference, or integration with BI tools.
 
 In this example project, we incorporate a relational data store. 
